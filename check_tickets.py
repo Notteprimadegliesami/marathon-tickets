@@ -52,8 +52,8 @@ async def main():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
-        await page.goto(URL, wait_until="networkidle", timeout=30_000)
-        await page.wait_for_timeout(3_000)
+        await page.goto(URL, wait_until="load", timeout=60_000)
+        await page.wait_for_timeout(8_000)
         text = await page.inner_text("body")
         await browser.close()
 
